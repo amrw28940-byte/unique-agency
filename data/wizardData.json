@@ -1,0 +1,75 @@
+{
+  "start": {
+    "question": "ما هي الخدمة التي تحتاجها لمشروعك؟",
+    "options": [
+      { "label": "تصميم موقع إلكتروني", "next": "web_platform" },
+      { "label": "تصميم متجر إلكتروني", "next": "store_platform" },
+      { "label": "تصميم تطبيق أندرويد", "next": "android_type" },
+      { "label": "خدمات السيو (SEO)", "next": "seo_type" },
+      { "label": "خدمات التسويق والمحتوى", "next": "marketing_type" }
+    ]
+  },
+  "web_platform": {
+    "question": "ما هي المنصة المطلوبة؟",
+    "options": [
+      { "label": "ووردبريس", "next": "wp_details" },
+      { "label": "Next.js", "next": "next_details" }
+    ]
+  },
+  "wp_details": {
+    "question": "القالب المطلوب؟",
+    "options": [
+      { "label": "قالب مجاني", "next": null },
+      { "label": "قالب مدفوع", "next": null }
+    ]
+  },
+  "next_details": {
+    "question": "نوع الموقع؟",
+    "options": [
+      { "label": "تعريفي", "next": null },
+      { "label": "لوحة تحكم خاصة", "next": null }
+    ]
+  },
+  "store_platform": {
+    "question": "ما هي منصة المتجر؟",
+    "options": [
+      { "label": "ووكومرس", "next": null },
+      { "label": "شوبيفاي", "next": null }
+    ]
+  },
+  "android_type": {
+    "question": "نوع التطبيق؟",
+    "options": [
+      { "label": "تطبيق متجر", "next": null },
+      { "label": "تطبيق خدمي", "next": null }
+    ]
+  },
+  "seo_type": {
+    "question": "نوع خدمة السيو؟",
+    "options": [
+      { "label": "أرشفة داخلية", "next": null },
+      { "label": "باك لينك", "next": "backlink_count" }
+    ]
+  },
+  "backlink_count": {
+    "question": "العدد المطلوب؟",
+    "options": [
+      { "label": "10-50 رابط", "next": null },
+      { "label": "أكثر من 100 رابط", "next": null }
+    ]
+  },
+  "marketing_type": {
+    "question": "نوع الخدمة؟",
+    "options": [
+      { "label": "فيديو AI", "next": "video_length" },
+      { "label": "كتابة مقالات", "next": null }
+    ]
+  },
+  "video_length": {
+    "question": "طول الفيديو؟",
+    "options": [
+      { "label": "أقل من دقيقة", "next": null },
+      { "label": "أكثر من 3 دقائق", "next": null }
+    ]
+  }
+}
