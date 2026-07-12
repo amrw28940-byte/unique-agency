@@ -15,7 +15,7 @@ export default function Snow() {
       width: '100%', 
       height: '100%', 
       pointerEvents: 'none', 
-      zIndex: 50, // تم تقليل الـ zIndex قليلاً ليكون فوق السكاشن وتحت النافبار
+      zIndex: 20, // تم تقليل الـ zIndex قليلاً ليكون فوق السكاشن وتحت النافبار
       overflow: 'hidden' 
     }}>
       {Array.from({ length: 50 }).map((_, i) => (
