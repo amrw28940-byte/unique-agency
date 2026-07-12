@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
-/* 1. ضبط أساسيات الصفحة لضمان عدم وجود مسافات */
+/* 1. ضبط أساسيات الصفحة لضمان الاستقرار الفوري */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #0D2B42; /* لون خلفية الموقع */
-  color: white;
+  background-color: #0D2B42; /* لون الخلفية الثابت لمنع وميض الشاشة */
+  color: #ffffff;
   overflow-x: hidden; /* يمنع ظهور أي مسافة بيضاء جانبية */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* 2. التأكد من أن جميع العناصر تحسب أبعادها بشكل صحيح */
@@ -16,8 +18,12 @@ html, body {
   box-sizing: border-box;
 }
 
-/* 3. تنسيق أساسي للنصوص لضمان ظهورها بشكل جيد */
+/* 3. الخط الأساسي وتنعيم النصوص */
 body {
-  font-family: sans-serif; /* يمكنك تغييرها لنوع الخط الذي تستخدمه */
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-cairo), sans-serif; /* اعتماد خط كايرو بسلاسة */
+}
+
+/* 4. إضافات مساعدة لتحسين تجربة التمرير والظهور */
+html {
+  scroll-behavior: smooth;
 }
