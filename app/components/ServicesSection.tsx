@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-// 1. أسمـاء الصور النظيفة بدون مسافات أو أقواس لتجنب مشاكل السيرفر
 const services = [
   { title: "تحسين محركات البحث", image: "/search-engine-optimization.webp", href: "/seo" },
   { title: "تصميم مواقع ووردبريس", image: "/wordpress-website-design.webp", href: "/wordpress-nextjs" },
@@ -34,26 +33,20 @@ export default function ServicesSection() {
                 href={service.href} 
                 className="group block overflow-hidden rounded-2xl shadow-xl border border-white/10 hover:border-yellow-400 transition-all duration-300"
               >
-                {/* الحاوية الأساسية للكارت */}
-                <div className="relative h-80 overflow-hidden">
-                  
-                  {/* تم إضافة كلاس relative هنا لحل خطأ الـ invalid position للـ fill إجبارياً */}
-                  <div className="relative w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-115">
-                    <Image 
-                      src={service.image} 
-                      alt={service.title} 
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover"
-                      priority={index < 3} // تحميل أول 3 صور بشكل فوري لزيادة سرعة الـ LCP
-                    />
-                  </div>
-                  
-                  {/* طبقة الظل فوق الصورة */}
-                  <div className="absolute inset-0 bg-sky-950/40 group-hover:bg-sky-950/20 transition-colors" />
+                {/* تم نقل التأثير الحركي للـ div الخارجي وفصل حاوية الصورة بدقة */}
+                <div className="relative h-80 w-full overflow-hidden bg-sky-900">
+                  <Image 
+                    src={service.image} 
+                    alt={service.title} 
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                    priority={index === 0}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                  />
+                  <div className="absolute inset-0 bg-sky-950/40 group-hover:bg-sky-950/20 transition-colors pointer-events-none" />
                 </div>
                 
-                {/* عنوان الخدمة تحت الصورة */}
                 <div className="p-6 text-center bg-sky-900/50">
                   <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">
                     {service.title}
