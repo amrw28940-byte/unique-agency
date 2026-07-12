@@ -2,24 +2,21 @@
 
 export default function HeroSection() {
   return (
-    /* aspect-video: تعطي السكشن أبعاد الفيديو الصحيحة تماماً على الموبايل (16:9) ليظهر كاملاً دون قص.
-      md:aspect-auto md:h-screen: تعيد السكشن لملء الشاشة بالكامل على أجهزة الكمبيوتر.
-    */
-    <section className="relative w-full aspect-video md:aspect-auto md:h-screen overflow-hidden bg-[#0D2B42]">
+    <section className="relative w-full h-[85vh] md:h-screen overflow-hidden bg-[#0D2B42] flex items-center justify-center">
       
-      {/* الفيديو يملأ المساحة المحددة له تماماً */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src="/Videokjk .mp4" type="video/mp4" />
-      </video>
+      {/* حاوية الفيديو تتكيف بدون قص عبر أبعاد نسبة عرض لارتفاع مرنة */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none flex items-center justify-center">
+        <iframe
+          className="w-[177.77vh] min-w-full h-[56.25vw] min-h-full object-cover scale-125"
+          src="https://www.youtube-nocookie.com/embed/jl-aa1H3gUM?autoplay=1&mute=1&loop=1&playlist=jl-aa1H3gUM&controls=0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1"
+          title="Background Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          style={{ border: 'none' }}
+        />
+      </div>
 
-      {/* طبقة التعتيم فوق الفيديو */}
-      <div className="absolute inset-0 bg-black/50 z-10" />
+      {/* طبقة التعتيم فوق الفيديو لضمان وضوح النصوص */}
+      <div className="absolute inset-0 bg-black/60 z-10 pointer-events-none" />
       
       {/* المحتوى يطفو فوق الفيديو في المنتصف تماماً */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white px-4">
