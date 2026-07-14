@@ -10,7 +10,10 @@ interface Props {
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
   
-  const post = await getPostBySlug(slug);
+  // 🎯 فك تشفير الـ slug العربي لضمان تطابقه مع قاعدة بيانات الووردبريس
+  const decodedSlug = decodeURIComponent(slug);
+  
+  const post = await getPostBySlug(decodedSlug);
   const allPosts = await getAllPosts(); 
 
   if (!post) notFound();

@@ -1,8 +1,43 @@
 import { MetadataRoute } from 'next'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// دالة لجلب المقالات من موقع الووردبريس القديم عبر GraphQL
+async function getWordPressPosts() {
+  // الرابط القديم للووردبريس اللي عليه إضافة GraphQL
+  const WORDPRESS_GRAPHQL_ENDPOINT = 'https://www.unique-ws.com/graphql'
+
+  try {
+    const res = await fetch(WORDPRESS_GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query GetPostsForSitemap {
+            posts(first: 1000) { 
+              nodes {
+                slug
+                modified
+              }
+            }
+          }
+        `
+      }),
+      // كاش لمدة ساعة عشان ميبقاش فيه ضغط على السيرفر ويحدث نفسه تلقائياً
+      next: { revalidate: 3600 } 
+    })
+
+    const { data } = await res.json()
+    return data?.posts?.nodes || []
+  } catch (error) {
+    console.error('Error fetching WordPress posts:', error)
+    return []
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // الدومين الجديد لـ Next.js
   const baseUrl = 'https://www.uniquee-ws.com'
 
+  // 1. صفحات الـ Next.js الثابتة (تُضاف يدوياً عند إنشاء صفحة كود جديدة)
   const mainPages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
     { url: `${baseUrl}/aboutus`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
@@ -32,7 +67,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/SEOCompanySharjah`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/SEOCompanyUAE`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/WebsiteDesignCompanySaudiArabia`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${baseUrl}/SEOCompanyAlexandria`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
   ]
 
-  return [...mainPages, ...servicePages, ...localSeoPages]
+  // 2. جلب المقالات ديناميكياً من الووردبريس (unique-ws.com)
+  const wpPosts = await getWordPressPosts()
+  
+  // تحويل روابط الووردبريس للشكل الجديد في Next.js (uniquee-ws.com/blog/slug)
+  const blogPages: MetadataRoute.Sitemap = wpPosts.map((post: any) => ({
+    url: `${baseUrl}/blog/${encodeURIComponent(post.slug)}`,
+    lastModified: new Date(post.modified), 
+    changeFrequency: 'weekly',
+    priority: 0.7
+  }))
+
+  // دمج كل الصفحات مع بعضها
+  return [...mainPages, ...servicePages, ...localSeoPages, ...blogPages]
 }
