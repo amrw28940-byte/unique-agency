@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
-/* 1. ضبط أساسيات الصفحة لضمان الاستقرار الفوري */
+/* 1. ضبط أساسيات الصفحة لضمان الاستقرار الفوري وتطابق لون الخلفية مع شعار الشركة */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #0D2B42; /* لون الخلفية الثابت لمنع وميض الشاشة */
+  background-color: #00223d; /* لون خلفية اللوجو الرسمي الدقيق لمنع وميض الشاشة */
   color: #ffffff;
   overflow-x: hidden; /* يمنع ظهور أي مسافة بيضاء جانبية */
   text-rendering: optimizeLegibility;
@@ -18,9 +18,9 @@ html, body {
   box-sizing: border-box;
 }
 
-/* 3. الخط الأساسي وتنعيم النصوص */
+/* 3. تطبيق الخط الأساسي عبر المتغير المحسن الممرر من Next.js */
 body {
-  font-family: var(--font-cairo), sans-serif; /* اعتماد خط كايرو بسلاسة */
+  font-family: var(--font-cairo), sans-serif; 
 }
 
 /* 4. إضافات مساعدة لتحسين تجربة التمرير والظهور */
