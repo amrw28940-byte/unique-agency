@@ -391,7 +391,6 @@ export default function SEOCompanyUAEPage() {
                   style={{ width: "100%", height: "100%", backgroundColor: "#0b1b3d" }}
                 >
                   <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
                   {mapLocations.map((loc, idx) => (

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google"; // استيراد الخط الرسمي والمحسن تلقائياً
+import { GoogleAnalytics } from "@next/third-parties/google"; // استيراد مكتبة إحصاءات جوجل
 import "./globals.css";
 
 import Navbar from "./components/Navbar"; 
@@ -47,6 +48,8 @@ export default function RootLayout({
           </LayoutWrapper>
         </div>
         <FooterSection />
+        {/* إحصاءات جوجل */}
+        <GoogleAnalytics gaId="G-JY73T3RMFW" />
       </body>
     </html>
   );

@@ -8,7 +8,7 @@ export default function FooterSection() {
     { name: "شركة سيو في جدة", slug: "seocompanyjeddah" },
     { name: "شركة سيو في الامارات", slug: "SEOCompanyUAE" },
     { name: "شركة سيو في الشارقة", slug: "SEOCompanySharjah" },
-    { name: "شركة سيو في دبي", slug: "SECompanyDubai" },
+    { name: "شركة سيو في دبي", slug: "SEOCompanyDubai" },
     { name: "شركة سيو في الكويت", slug: "SEOCompanyKuwait" },
     { name: "شركة سيو في مصر", slug: "SEOCompanyEgypt" },
     { name: "شركة سيو في اسكندرية", slug: "SEOCompanyAlexandria" },
