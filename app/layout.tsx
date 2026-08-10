@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google"; // استيراد الخط الرسمي والمحسن تلقائياً
-import { GoogleAnalytics } from "@next/third-parties/google"; // استيراد مكتبة إحصاءات جوجل
+import { GoogleTagManager } from "@next/third-parties/google"; // استيراد مكتبة Google Tag Manager
 import "./globals.css";
 
 import Navbar from "./components/Navbar"; 
@@ -48,8 +48,8 @@ export default function RootLayout({
           </LayoutWrapper>
         </div>
         <FooterSection />
-        {/* إحصاءات جوجل */}
-        <GoogleAnalytics gaId="G-JY73T3RMFW" />
+        {/* إدارة العلامات من جوجل (Google Tag Manager) */}
+        <GoogleTagManager gtmId="GTM-N2JWB3HS" />
       </body>
     </html>
   );
