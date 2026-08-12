@@ -1,109 +1,154 @@
 "use client";
-import React, { useState, useEffect } from 'react';
 
-const addonsList = [
-  { name: "WP Rocket", price: 5 }, { name: "LiteSpeed", price: 5 },
-  { name: "Rank Math", price: 5 }, { name: "Yoast SEO", price: 5 },
-  { name: "Elementor Pro", price: 5 }, { name: "Wordfence", price: 5 },
-  { name: "Contact Form 7", price: 5 }, { name: "WooCommerce", price: 5 },
-  { name: "JetPack", price: 5 }, { name: "UpdraftPlus", price: 5 }
-];
+import React, { useState } from "react";
 
-export default function ProjectWizard() {
-  const [service, setService] = useState("");
-  const [platform, setPlatform] = useState("wp");
-  const [pages, setPages] = useState(1);
-  const [templateType, setTemplateType] = useState("free");
-  const [templateName, setTemplateName] = useState("");
-  const [elementor, setElementor] = useState("none");
-  const [addons, setAddons] = useState<string[]>([]);
-  const [total, setTotal] = useState(0);
+export default function GoogleLeadForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    businessType: "",
+    marketingHistory: "",
+    websiteUrl: "",
+    googleMapsUrl: "",
+  });
 
-  useEffect(() => {
-    let newTotal = 0;
-    if (service === "web") {
-      newTotal += (pages * 10);
-      if (templateType === "paid") newTotal += 50; // سعر وهمي للقالب المدفوع
-      if (elementor === "paid") newTotal += 5;
-    }
-    newTotal += (addons.length * 5);
-    setTotal(newTotal);
-  }, [pages, templateType, elementor, addons, service]);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const whatsappNumber = "01270506511";
+
+    const message = `*طلب جديد من فورم الظهور في أول 3 نتائج Google*%0A
+*الاسم:* ${formData.name}%0A
+*رقم الموبايل:* ${formData.phone}%0A
+*الإيميل:* ${formData.email}%0A
+*مجال البزنس:* ${formData.businessType}%0A
+*سابقة التسويق:* ${formData.marketingHistory || "لا يوجد"}%0A
+*لينك الموقع:* ${formData.websiteUrl}%0A
+*لينك خرائط جوجل:* ${formData.googleMapsUrl}`;
+
+    // فتح تطبيق الوب أو الواتساب بالبيانات مباشرة
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+  };
 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 text-white shadow-2xl">
-      {/* اختيار الخدمة */}
-      <div className="mb-8">
-        <label className="block mb-2 font-bold">الخدمة المطلوبة:</label>
-        <select onChange={(e) => setService(e.target.value)} className="w-full bg-sky-900 p-3 rounded-lg">
-          <option value="">اختر خدمة...</option>
-          <option value="web">تصميم موقع إلكتروني</option>
-          <option value="store">تصميم متجر إلكتروني</option>
-          <option value="app">تصميم تطبيق أندرويد</option>
-          <option value="app">تصميم فيديو ai </option>
-          <option value="app">كتابة محتوى</option>
-          <option value="app">خدمة باك لينك</option>
-          <option value="app">خدمة جيست بوست</option>
-
-        </select>
+    <div className="min-h-screen bg-[#07111e] text-slate-100 flex flex-col items-center justify-center p-4 sm:p-6 font-sans" dir="rtl">
+      
+      {/* رأس الصفحة البسيط المطابق */}
+      <div className="text-center max-w-xl mb-8 pt-10">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-3">
+          اظهر في أول <span className="text-cyan-400">3 نتائج</span> على Google
+        </h1>
+        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          عاوز تجيب عملاء أكتر؟ املأ الفورم وهنبعتلك فيديو بسيط بيوضح إزاي تعلي ترتيبك على Google.
+        </p>
       </div>
 
-      {service === "web" && (
-        <div className="space-y-6 border-t border-white/20 pt-6">
+      {/* صندوق الفورم الأبيض المطابق للصورة */}
+      <div className="bg-white text-slate-900 w-full max-w-lg p-6 sm:p-8 rounded-2xl shadow-2xl relative mb-12">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          
           <div>
-            <label className="block mb-2">نوع المنصة:</label>
-            <select onChange={(e) => setPlatform(e.target.value)} className="w-full bg-sky-900 p-3 rounded-lg">
-              <option value="wp">ووردبريس</option>
-              <option value="next">Next.js</option>
-            </select>
+            <label className="block text-xs font-bold text-slate-700 mb-1">الاسم *</label>
+            <input
+              type="text"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            />
           </div>
 
-          {platform === "wp" && (
-            <>
-              <div className="flex justify-between items-center">
-                <label>عدد الصفحات (الصفحة 10$):</label>
-                <input type="number" value={pages} onChange={(e) => setPages(Number(e.target.value))} className="w-20 bg-white/20 p-2 rounded text-center" />
-              </div>
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">رقم الموبايل *</label>
+            <input
+              type="tel"
+              name="phone"
+              required
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            />
+          </div>
 
-              <div>
-                <label className="block mb-2">القالب:</label>
-                <select onChange={(e) => setTemplateType(e.target.value)} className="w-full bg-sky-900 p-3 rounded-lg mb-2">
-                  <option value="free">قالب مجاني</option>
-                  <option value="paid">قالب مدفوع (50$)</option>
-                </select>
-                {templateType === "paid" && (
-                  <select onChange={(e) => setTemplateName(e.target.value)} className="w-full bg-sky-800 p-3 rounded-lg">
-                    <option value="">اختر قالب من القائمة...</option>
-                    {["Astra Pro", "OceanWP", "Flatsome", "Divi", "Avada", "GeneratePress"].map(t => <option key={t} value={t}>{t}</option>)}
-                  </select>
-                )}
-              </div>
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">الإيميل *</label>
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            />
+          </div>
 
-              <div>
-                <label className="block mb-2">إليمنتور:</label>
-                <select onChange={(e) => setElementor(e.target.value)} className="w-full bg-sky-900 p-3 rounded-lg">
-                  <option value="none">بدون</option>
-                  <option value="free">مجاني</option>
-                  <option value="paid">مدفوع (5$)</option>
-                </select>
-              </div>
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">نوع/مجال البزنس بتاعك؟ *</label>
+            <input
+              type="text"
+              name="businessType"
+              required
+              value={formData.businessType}
+              onChange={handleChange}
+              className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            />
+          </div>
 
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                {addonsList.map((a) => (
-                  <label key={a.name} className="flex items-center gap-2">
-                    <input type="checkbox" onChange={() => setAddons(prev => prev.includes(a.name) ? prev.filter(i => i !== a.name) : [...prev, a.name])} />
-                    {a.name} (5$)
-                  </label>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      )}
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">أي سابقة في التسويق؟</label>
+            <input
+              type="text"
+              name="marketingHistory"
+              value={formData.marketingHistory}
+              onChange={handleChange}
+              className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            />
+          </div>
 
-      <div className="mt-8 text-center text-3xl font-bold bg-white/10 p-4 rounded-xl">
-        الإجمالي: {total}$
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">لينك الموقع الإلكتروني (حتى لو متوقف) *</label>
+            <input
+              type="text"
+              name="websiteUrl"
+              required
+              value={formData.websiteUrl}
+              onChange={handleChange}
+              className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">لينك Google Maps *</label>
+            <input
+              type="text"
+              name="googleMapsUrl"
+              required
+              value={formData.googleMapsUrl}
+              onChange={handleChange}
+              className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-[#14b8a6] hover:bg-[#0d9488] text-white font-bold py-3 px-4 rounded-xl transition duration-200 shadow-md text-base mt-2"
+          >
+            ابعث
+          </button>
+
+          <p className="text-center text-[11px] text-slate-400 mt-3">
+            هيوصلك الفيديو على الإيميل خلال 5 دقايق، مش هنزعجك برياضتك في أمان
+          </p>
+
+        </form>
       </div>
+
     </div>
   );
 }

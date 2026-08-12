@@ -1,5 +1,8 @@
 "use client";
-
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Settings, ArrowLeft, Layout, Rocket, MousePointerClick } from "lucide-react";

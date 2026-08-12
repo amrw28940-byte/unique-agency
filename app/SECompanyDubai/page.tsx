@@ -316,7 +316,7 @@ export default function SECompanyDubaiPage() {
                 const IconComponent = step.icon;
                 return (
                   <motion.div 
-                    key={idx} 
+                    key={step.title} 
                     className="p-6 rounded-2xl bg-[#091428] text-white border border-yellow-500/30 shadow-[0_10px_25px_rgba(4,13,26,0.5)] backdrop-blur-sm flex flex-col items-start transition-transform hover:-translate-y-1.5"
                     whileHover={{ scale: 1.02 }}
                   >
@@ -355,7 +355,7 @@ export default function SECompanyDubaiPage() {
               const IconComp = service.icon;
               return (
                 <motion.div 
-                  key={idx} 
+                  key={service.title} 
                   className="p-8 sm:p-10 rounded-[2rem] bg-[#091428] text-white border-2 border-slate-400/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_25px_rgba(148,163,184,0.15)] backdrop-blur-md flex flex-col items-start transition-all hover:-translate-y-1.5"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -403,7 +403,7 @@ export default function SECompanyDubaiPage() {
               const IconC = feat.icon;
               return (
                 <motion.div 
-                  key={idx} 
+                  key={feat.title} 
                   className="relative p-8 sm:p-10 rounded-[2rem] bg-[#091428] text-white border-2 border-slate-400/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_25px_rgba(148,163,184,0.15)] backdrop-blur-md flex flex-col justify-between transition-all hover:-translate-y-2"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -448,7 +448,7 @@ export default function SECompanyDubaiPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {locationsData.map((loc, idx) => (
               <motion.div 
-                key={idx} 
+                key={loc.title} 
                 className="p-8 sm:p-10 rounded-[2rem] bg-[#091428] text-white border-2 border-slate-400/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_25px_rgba(148,163,184,0.15)] backdrop-blur-md flex flex-col justify-between transition-all hover:-translate-y-2"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -500,7 +500,7 @@ export default function SECompanyDubaiPage() {
               const IconW = step.icon;
               return (
                 <motion.div 
-                  key={idx} 
+                  key={step.number} 
                   className="relative p-8 sm:p-10 rounded-[2rem] bg-[#091428] text-white border-2 border-slate-400/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_25px_rgba(148,163,184,0.15)] backdrop-blur-md flex flex-col justify-between transition-all hover:-translate-y-2"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -547,7 +547,7 @@ export default function SECompanyDubaiPage() {
               const IconWt = item.icon;
               return (
                 <motion.div 
-                  key={idx} 
+                  key={item.title} 
                   className="p-8 sm:p-10 rounded-[2rem] bg-[#091428] text-white border-2 border-slate-400/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_25px_rgba(148,163,184,0.15)] backdrop-blur-md flex flex-col justify-between transition-all hover:-translate-y-2"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -580,7 +580,7 @@ export default function SECompanyDubaiPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {counterData.map((c, idx) => (
               <motion.div 
-                key={idx} 
+                key={c.label} 
                 className="p-6 rounded-2xl bg-[#040D1A]/60 border border-yellow-500/20 backdrop-blur-md shadow-lg"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -614,7 +614,7 @@ export default function SECompanyDubaiPage() {
           <div className="space-y-4">
             {faqData.map((faq, idx) => (
               <motion.div 
-                key={idx} 
+                key={faq.q} 
                 className="rounded-2xl bg-[#091428] border-2 border-slate-400/30 shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
