@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/((?!blog|api|_next|static|favicon.ico).*)",
+      "destination": "/blog/:path*",
+      "permanent": true
+    }
+  ]
+}
