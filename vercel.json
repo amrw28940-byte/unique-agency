@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "/((?!blog|api|_next|static|favicon.ico|graphql|wp-json).*)",
-      "destination": "/blog/$1",
-      "permanent": true
-    }
-  ]
-}

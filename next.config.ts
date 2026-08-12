@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: 'unique-ws.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'uniquee-ws.com',
+        pathname: '/**',
+      },
     ],
   },
   typescript: {
