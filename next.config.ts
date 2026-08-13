@@ -21,10 +21,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // استهداف أي مسار قديم ليس لديه prefix بكلمة blog أو مسارات النظام
-        source: '/((?!blog|wp-admin|api|_next|favicon.ico).*)',
-        destination: '/blog/:path*',
-        permanent: true, // تحويل دائم 301 لحفظ الأرشفة في جوجل
+        source: '/:path((?!blog|wp-admin|api|_next|favicon.ico).*)',
+        destination: '/blog/:path',
+        permanent: true,
       },
     ];
   },
