@@ -21,8 +21,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/:path((?!blog|wp-admin|api|_next|favicon.ico).*)',
-        destination: '/blog/:path',
+        source: '/:slug((?!blog|wp-admin|api|_next|favicon.ico|contact|about|services|wordpress-nextjs|$).*)',
+        destination: '/blog/:slug',
         permanent: true,
       },
     ];
